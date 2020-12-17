@@ -4,9 +4,7 @@ namespace OZiTAG\Tager\Backend\Files\Features;
 
 use Illuminate\Http\Request;
 use Ozerich\FileStorage\Storage;
-use Ozerich\FileStorage\Models\File;
 use OZiTAG\Tager\Backend\Core\Features\Feature;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UploadFileFeature extends Feature
 {
@@ -25,9 +23,24 @@ class UploadFileFeature extends Feature
         }
     }
 
-    public function handle(Storage $storage)
+    protected function throwError($message)
     {
+        abort(400, $message);
+    }
+
+    public function handle(Request $request, Storage $storage)
+    {
+        $scenario = $request->get('scenario');
+
+        if (!empty($scenario)) {
+            $scenarioInstance = Storage::getScenario($scenario);
+            if (!$scenarioInstance) {
+                $this->throwError('Scenario "' . $scenario . '" not found');
+            }
+        }
+
         $file = null;
+        $usedFile = false;
 
         if ($this->supportFile) {
             /** @var Request $request */
@@ -35,26 +48,25 @@ class UploadFileFeature extends Feature
 
             $requestFile = $request->file('file');
             if ($requestFile) {
-                $file = $storage->createFromRequest();
+                $file = $storage->createFromRequest($scenario);
+                $usedFile = true;
             }
         }
 
-        if (!$file && $this->supportUrl) {
+        if (!$usedFile && $this->supportUrl) {
             $url = $request->post('url');
 
             if (empty($url)) {
-                abort(400, 'Empty URL');
+                $this->throwError('Empty URL');
+            } else if (!filter_var($url, FILTER_VALIDATE_URL)) {
+                $this->throwError('Invalid URL');
+            } else {
+                $file = $storage->createFromUrl($url, $scenario);
             }
-
-            if (!filter_var($url, FILTER_VALIDATE_URL)) {
-                abort(400, 'Invalid URL');
-            }
-
-            $file = $storage->createFromUrl($url);
         }
 
         if (!$file) {
-            abort(400, $storage->getUploadError());
+            $this->throwError($storage->getUploadError());
         }
 
         return $file->getShortJson();
