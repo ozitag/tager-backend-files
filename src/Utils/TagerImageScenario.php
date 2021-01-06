@@ -2,6 +2,7 @@
 
 namespace OZiTAG\Tager\Backend\Files\Utils;
 
+use Ozerich\FileStorage\Utils\ConfigHelper;
 use OZiTAG\Tager\Backend\Files\Enums\TagerFileThumbnail;
 
 class TagerImageScenario
