@@ -13,7 +13,7 @@ class TagerImageScenario
             $scenarioConfig['thumbnails'] = [];
         }
 
-        $scenarioConfig['thumbnails'][TagerFileThumbnail::AdminList] = ConfigHelper::thumb(null, 100, ConfigHelper::MODE_AUTO, false, 75);
+        $scenarioConfig['thumbnails'][TagerFileThumbnail::AdminView] = ConfigHelper::thumb(null, 220, ConfigHelper::MODE_AUTO, false, 75);
 
         return $scenarioConfig;
     }
@@ -22,7 +22,7 @@ class TagerImageScenario
     {
         $scenarioConfig = static::wrap($scenarioConfig);
 
-        $scenarioConfig['thumbnails'][TagerFileThumbnail::AdminView] = ConfigHelper::thumb(null, 220, ConfigHelper::MODE_AUTO, false, 75);
+        $scenarioConfig['thumbnails'][TagerFileThumbnail::AdminList] = ConfigHelper::thumb(null, 100, ConfigHelper::MODE_AUTO, false, 75);
 
         return $scenarioConfig;
     }
