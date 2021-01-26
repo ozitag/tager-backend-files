@@ -13,6 +13,11 @@ class TagerImageScenario
             $scenarioConfig['thumbnails'] = [];
         }
 
+        if (isset($scenarioConfig['thumbnail'])) {
+            $scenarioConfig['thumbnails']['default'] = $scenarioConfig['thumbnail'];
+            unset($scenarioConfig['thumbnail']);
+        }
+
         $scenarioConfig['thumbnails'][TagerFileThumbnail::AdminView] = ConfigHelper::thumb(null, 220, ConfigHelper::MODE_AUTO, false, 75);
 
         return $scenarioConfig;
