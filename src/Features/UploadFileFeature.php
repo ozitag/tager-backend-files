@@ -20,7 +20,7 @@ class UploadFileFeature extends Feature
 
         $this->supportUrl = $supportUrl;
 
-        if (!$this->supportUrl || !$this->supportFile) {
+        if (!$this->supportUrl && !$this->supportFile) {
             throw new \Exception('UploadFileFeature must have minimum one enabled mode');
         }
 
