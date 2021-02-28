@@ -2,9 +2,11 @@
 
 namespace OZiTAG\Tager\Backend\Files\Features;
 
+use GuzzleHttp\Exception\BadResponseException;
 use Illuminate\Http\Request;
 use Ozerich\FileStorage\Storage;
 use OZiTAG\Tager\Backend\Core\Features\Feature;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class UploadFileFeature extends Feature
 {
@@ -29,7 +31,7 @@ class UploadFileFeature extends Feature
 
     protected function throwError($message)
     {
-        abort(400, $message);
+        throw new BadRequestHttpException($message ?? 'Unknown error');
     }
 
     public function handle(Request $request, Storage $storage)
@@ -54,6 +56,8 @@ class UploadFileFeature extends Feature
             if ($requestFile) {
                 $file = $storage->createFromRequest($scenario);
                 $usedFile = true;
+            } else {
+                $this->throwError('File is empty');
             }
         }
 
