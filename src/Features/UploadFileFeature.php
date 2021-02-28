@@ -12,7 +12,9 @@ class UploadFileFeature extends Feature
 
     protected bool $supportFile;
 
-    public function __construct($supportFile = true, $supportUrl = false)
+    protected string $scenario;
+
+    public function __construct(bool $supportFile = true, bool $supportUrl = false, ?string $scenario = null)
     {
         $this->supportFile = $supportFile;
 
@@ -21,6 +23,8 @@ class UploadFileFeature extends Feature
         if (!$this->supportUrl || !$this->supportFile) {
             throw new \Exception('UploadFileFeature must have minimum one enabled mode');
         }
+
+        $this->scenario = $scenario;
     }
 
     protected function throwError($message)
@@ -30,7 +34,7 @@ class UploadFileFeature extends Feature
 
     public function handle(Request $request, Storage $storage)
     {
-        $scenario = $request->get('scenario');
+        $scenario = $this->scenario ?? $request->get('scenario');
 
         if (!empty($scenario)) {
             $scenarioInstance = Storage::getScenario($scenario);
