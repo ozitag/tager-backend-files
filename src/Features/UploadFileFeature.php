@@ -14,7 +14,7 @@ class UploadFileFeature extends Feature
 
     protected bool $supportFile;
 
-    protected string $scenario;
+    protected ?string $scenario;
 
     public function __construct(bool $supportFile = true, bool $supportUrl = false, ?string $scenario = null)
     {
