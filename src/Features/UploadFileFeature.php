@@ -56,8 +56,6 @@ class UploadFileFeature extends Feature
             if ($requestFile) {
                 $file = $storage->createFromRequest($scenario);
                 $usedFile = true;
-            } else {
-                $this->throwError('File is empty');
             }
         }
 
@@ -74,7 +72,11 @@ class UploadFileFeature extends Feature
         }
 
         if (!$file) {
-            $this->throwError($storage->getUploadError());
+            if ($this->supportFile && !$request->file('file')) {
+                $this->throwError('File is empty');
+            } else {
+                $this->throwError($storage->getUploadError());
+            }
         }
 
         return $file->getShortJson();
