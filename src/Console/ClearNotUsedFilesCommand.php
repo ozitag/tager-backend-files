@@ -25,7 +25,7 @@ class ClearNotUsedFilesCommand extends Command
      */
     protected $description = 'Clear not used files from database';
 
-    private function clearFilesFromDatabase()
+    public function handle()
     {
         if (Schema::hasTable('files') == false) {
             $this->error('Error: no table found "files"');
@@ -68,35 +68,5 @@ class ClearNotUsedFilesCommand extends Command
         $deletedCount = DB::delete($sqlQuery);
 
         $this->log('Files deleted: ' . $deletedCount);
-    }
-
-    public function handle(FileRepository $fileRepository)
-    {
-        $this->clearFilesFromDatabase();
-
-        /** @var File[] $files */
-        $files = $fileRepository->all();
-        $filesCount = count($files);
-
-        $result = [];
-
-        foreach ($files as $ind => $file) {
-            $this->log('File ' . ($ind + 1) . ' / ' . count($files) . ', ID ' . $file->id . ': ', false);
-
-            $scenario = $file->scenarioInstance(false);
-            if (!$scenario) {
-                $this->log('No Scenario');
-                continue;
-            }
-
-            $filePath = $file->getPath();
-            $filePathes = $scenario->getStorage()->getThumbnailPathes($file->hash, $scenario->shouldSaveOriginalFilename());
-
-            $result = array_merge($result, $filePath ? [$filePath] : [], $filePathes);
-
-            $this->log('OK');
-        }
-
-        $this->log('Found ' . count($result) . ' used files on storage');
     }
 }
