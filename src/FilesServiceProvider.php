@@ -18,10 +18,6 @@ class FilesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                ClearNotUsedFilesCommand::class
-            ]);
-        }
+        parent::boot();
     }
 }
