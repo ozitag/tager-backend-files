@@ -33,6 +33,12 @@ class UserFilesController extends AdminCrudController
             'name' => function (UserFile $userFile) {
                 return $userFile->file->name;
             },
+            'type' => function (UserFile $userFile) {
+                return $userFile->file->mime;
+            },
+            'size' => function (UserFile $userFile) {
+                return $userFile->file->size;
+            },
             'url' => function (UserFile $userFile) {
                 return $userFile->file->getUrl();
             },
