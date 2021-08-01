@@ -2,7 +2,7 @@
 
 return [
     'group' => 'User Files',
-    'views_files' => 'View files',
-    'create_files' => 'Add files',
-    'delete_files' => 'Delete files',
+    'files_view' => 'View files',
+    'files_create' => 'Add files',
+    'files_delete' => 'Delete files',
 ];
