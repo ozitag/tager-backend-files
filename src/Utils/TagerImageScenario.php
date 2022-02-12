@@ -3,7 +3,6 @@
 namespace OZiTAG\Tager\Backend\Files\Utils;
 
 use Ozerich\FileStorage\Utils\ConfigHelper;
-use OZiTAG\Tager\Backend\Files\Enums\TagerFileThumbnail;
 
 class TagerImageScenario
 {
@@ -18,7 +17,7 @@ class TagerImageScenario
             unset($scenarioConfig['thumbnail']);
         }
 
-        $scenarioConfig['thumbnails'][TagerFileThumbnail::AdminView] = ConfigHelper::thumb(null, 220, ConfigHelper::MODE_AUTO, false, 75);
+        $scenarioConfig['thumbnails']['tager-admin-view'] = ConfigHelper::thumb(null, 220, ConfigHelper::MODE_AUTO, false, 75);
 
         return $scenarioConfig;
     }
@@ -27,7 +26,7 @@ class TagerImageScenario
     {
         $scenarioConfig = static::wrap($scenarioConfig);
 
-        $scenarioConfig['thumbnails'][TagerFileThumbnail::AdminList] = ConfigHelper::thumb(null, 100, ConfigHelper::MODE_AUTO, false, 75);
+        $scenarioConfig['thumbnails']['tager-admin-list'] = ConfigHelper::thumb(null, 100, ConfigHelper::MODE_AUTO, false, 75);
 
         return $scenarioConfig;
     }

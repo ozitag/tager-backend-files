@@ -2,17 +2,6 @@
 
 namespace OZiTAG\Tager\Backend\Files\Controllers;
 
-use OZiTAG\Tager\Backend\Blog\Features\Admin\ListPostsByCategoryFeature;
-use OZiTAG\Tager\Backend\Blog\Models\BlogCategory;
-use OZiTAG\Tager\Backend\Crud\Actions\DeleteAction;
-use OZiTAG\Tager\Backend\Crud\Actions\StoreOrUpdateAction;
-use OZiTAG\Tager\Backend\Crud\Controllers\AdminCrudController;
-use OZiTAG\Tager\Backend\Blog\Operations\CreateCategoryOperation;
-use OZiTAG\Tager\Backend\Blog\Operations\UpdateCategoryOperation;
-use OZiTAG\Tager\Backend\Blog\Jobs\CheckIfCanDeleteCategoryJob;
-use OZiTAG\Tager\Backend\Blog\Repositories\CategoryRepository;
-use OZiTAG\Tager\Backend\Blog\Requests\CreateBlogCategoryRequest;
-use OZiTAG\Tager\Backend\Blog\Requests\UpdateBlogCategoryRequest;
 use OZiTAG\Tager\Backend\Files\Models\UserFile;
 use OZiTAG\Tager\Backend\Files\Operations\CreateUserFileOperation;
 use OZiTAG\Tager\Backend\Files\Repositories\UserFileRepository;

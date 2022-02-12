@@ -24,9 +24,9 @@ class FilesServiceProvider extends ServiceProvider
         $this->publishes([__DIR__ . '/../config.php' => config_path('tager-files.php'),]);
 
         TagerScopes::registerGroup(__('tager-files::scopes.group'), [
-            FilesScope::FilesView => __('tager-files::scopes.files_view'),
-            FilesScope::FilesCreate => __('tager-files::scopes.files_create'),
-            FilesScope::FilesDelete => __('tager-files::scopes.files_delete'),
+            FilesScope::FilesView->value => __('tager-files::scopes.files_view'),
+            FilesScope::FilesCreate->value => __('tager-files::scopes.files_create'),
+            FilesScope::FilesDelete->value => __('tager-files::scopes.files_delete'),
         ]);
     }
 }

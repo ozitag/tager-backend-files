@@ -2,11 +2,9 @@
 
 namespace OZiTAG\Tager\Backend\Files\Enums;
 
-use OZiTAG\Tager\Backend\Core\Enums\Enum;
-
-final class FilesScope extends Enum
+enum FilesScope: string
 {
-    const FilesView = 'files.view';
-    const FilesCreate = 'files.create';
-    const FilesDelete = 'files.delete';
+    case FilesView = 'files.view';
+    case FilesCreate = 'files.create';
+    case FilesDelete = 'files.delete';
 }

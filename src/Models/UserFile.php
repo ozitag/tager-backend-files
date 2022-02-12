@@ -2,13 +2,8 @@
 
 namespace OZiTAG\Tager\Backend\Files\Models;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Ozerich\FileStorage\Models\File;
-use OZiTAG\Tager\Backend\Blog\Utils\TagerBlogSeoHelper;
-use OZiTAG\Tager\Backend\Blog\Utils\TagerBlogUrlHelper;
-use OZiTAG\Tager\Backend\Core\Models\Contracts\IPublicWebModel;
 use OZiTAG\Tager\Backend\Core\Models\TModel;
-use OZiTAG\Tager\Backend\Crud\Contracts\IModelPriorityConditional;
 
 /**
  * Class UserFile
