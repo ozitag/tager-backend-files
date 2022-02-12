@@ -2,6 +2,8 @@
 
 namespace OZiTAG\Tager\Backend\Files\Controllers;
 
+use OZiTAG\Tager\Backend\Crud\Actions\StoreOrUpdateAction;
+use OZiTAG\Tager\Backend\Crud\Controllers\AdminCrudController;
 use OZiTAG\Tager\Backend\Files\Models\UserFile;
 use OZiTAG\Tager\Backend\Files\Operations\CreateUserFileOperation;
 use OZiTAG\Tager\Backend\Files\Repositories\UserFileRepository;
@@ -35,6 +37,9 @@ class UserFilesController extends AdminCrudController
 
         $this->setResourceFields($fields, true);
 
-        $this->setStoreAction(new StoreOrUpdateAction(CreateUserFileRequest::class, CreateUserFileOperation::class));
+        $this->setStoreAction(new StoreOrUpdateAction(
+            CreateUserFileRequest::class,
+            CreateUserFileOperation::class
+        ));
     }
 }
