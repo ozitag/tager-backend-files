@@ -15,7 +15,7 @@ class UserFile extends TModel
 {
     protected $table = 'tager_userfiles';
 
-    static $defaultOrder = 'tager_userfiles.created_at DESC';
+    static string $defaultOrder = 'tager_userfiles.created_at DESC';
 
     /**
      * The attributes that are mass assignable.
