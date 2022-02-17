@@ -68,6 +68,9 @@ class UploadFileFeature extends Feature
                 $this->throwError('Invalid URL');
             } else {
                 $file = $storage->createFromUrl($url, $scenario);
+                if(!$file){
+                    $this->throwError('Failure download file - '.$storage->getUploadError());
+                }
             }
         }
 
