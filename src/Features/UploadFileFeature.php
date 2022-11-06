@@ -62,6 +62,11 @@ class UploadFileFeature extends Feature
                 if (!$filename) {
                     $filename = 'file.jpg';
                 }
+            } else if (str_starts_with($base64, 'data:image/jpg;base64,')) {
+                $base64 = substr($base64, strlen('data:image/jpg;base64,'));
+                if (!$filename) {
+                    $filename = 'file.jpg';
+                }
             }
 
             if (!empty($base64)) {
